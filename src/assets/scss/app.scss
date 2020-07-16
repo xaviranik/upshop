@@ -1,8 +1,13 @@
 $theme-colors: ("primary": #000000);
+$font-family: "Roboto";
 @import '~bootstrap/scss/bootstrap';
+@import './admin.scss';
 
 html,
 body {
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-family: $font-family,
+        'Segoe UI',
+        Helvetica,
+        sans-serif;
     height: 100%;
 }
