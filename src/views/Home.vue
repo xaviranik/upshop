@@ -10,6 +10,8 @@
       </div>
     </div>
     <Footer />
+
+    <AuthModal />
   </div>
 </template>
 
@@ -18,6 +20,7 @@ import Navbar from "@/components/Navbar.vue";
 import Showcase from "@/components/Showcase.vue";
 import Footer from "@/components/Footer.vue";
 import ProductCard from "@/components/ProductCard.vue";
+import AuthModal from "@/components/AuthModal.vue";
 
 export default {
   name: "Home",
@@ -25,7 +28,8 @@ export default {
     Navbar,
     Showcase,
     Footer,
-    ProductCard
+    ProductCard,
+    AuthModal
   }
 };
 </script>

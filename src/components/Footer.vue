@@ -2,7 +2,7 @@
   <div>
     <footer class="footer">
       <p>
-        Copyright
+        Copyright 2020
         <br />
         <a href="#">All Rights Reserved</a> by
         <a href="#">UpShop</a>

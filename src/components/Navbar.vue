@@ -34,8 +34,12 @@
               placeholder="Search..."
               aria-label="Search"
             />
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
+          <button
+            class="btn btn-outline-primary my-2 my-sm-0 ml-2"
+            data-toggle="modal"
+            data-target="#staticBackdrop"
+          >Login/Signup</button>
         </div>
       </div>
     </nav>
