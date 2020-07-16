@@ -11,6 +11,7 @@ window.$ = window.jQuery = jQuery;
 import './assets/scss/app.scss';
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/]
 
 new Vue({
   router,

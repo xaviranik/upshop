@@ -7,7 +7,7 @@
           <div class="sidebar-item sidebar-brand">
             <a href="#">UpShop Admin</a>
             <div id="close-sidebar" @click="toggleSidebar">
-              <i class="fas fa-times"></i>
+              <ion-icon name="chevron-back-circle-outline"></ion-icon>
             </div>
           </div>
           <!-- sidebar-header  -->
@@ -15,7 +15,7 @@
             <div class="user-pic">
               <img
                 class="img-responsive img-rounded"
-                src="https://i.pravatar.cc/300"
+                src="https://i.pravatar.cc/150?u=test"
                 alt="User picture"
               />
             </div>
@@ -26,7 +26,7 @@
               </span>
               <span class="user-role">Administrator</span>
               <span class="user-status">
-                <i class="fa fa-circle"></i>
+                <span class="dot mr-1"></span>
                 <span>Online</span>
               </span>
             </div>
@@ -53,36 +53,36 @@
                 <span>Menu</span>
               </li>
               <li>
-                <a href="#">
+                <router-link to="/admin/overview">
                   <i>
                     <ion-icon name="speedometer-outline"></ion-icon>
                   </i>
                   <span class="menu-text">Overview</span>
-                </a>
+                </router-link>
               </li>
               <li>
-                <a href="#">
+                <router-link to="/admin/products">
                   <i>
                     <ion-icon name="albums-outline"></ion-icon>
                   </i>
                   <span class="menu-text">Products</span>
-                </a>
+                </router-link>
               </li>
               <li>
-                <a href="#">
+                <router-link to="/admin/orders">
                   <i>
                     <ion-icon name="cart-outline"></ion-icon>
                   </i>
                   <span class="menu-text">Orders</span>
-                </a>
+                </router-link>
               </li>
               <li>
-                <a href="#">
+                <router-link to="#">
                   <i>
                     <ion-icon name="log-out-outline"></ion-icon>
                   </i>
                   <span class="menu-text">Log Out</span>
-                </a>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -91,8 +91,9 @@
       </nav>
       <!-- page-content  -->
       <main class="page-content pt-2">
-        <div id="overlay" class="overlay"></div>
-        <div class="container-fluid p-5">Page</div>
+        <div class="container-fluid p-4">
+          <router-view></router-view>
+        </div>
       </main>
       <!-- page-content" -->
     </div>
@@ -105,10 +106,18 @@ export default {
   methods: {
     toggleSidebar() {
       window.$(".page-wrapper").toggleClass("pinned");
+      console.log("LOL");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
 </style>
