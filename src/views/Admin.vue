@@ -77,12 +77,12 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="#">
+                <a href="#" @click="logoutUser">
                   <i>
                     <ion-icon name="log-out-outline"></ion-icon>
                   </i>
                   <span class="menu-text">Log Out</span>
-                </router-link>
+                </a>
               </li>
             </ul>
           </div>
@@ -102,11 +102,22 @@
 </template>
 
 <script>
+import { fb } from "@/firebase";
+
 export default {
   methods: {
     toggleSidebar() {
       window.$(".page-wrapper").toggleClass("pinned");
-      console.log("LOL");
+    },
+    logoutUser() {
+      fb.auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

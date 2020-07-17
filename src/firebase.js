@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 let firebaseConfig = {
     apiKey: "AIzaSyDjz-riTbdKA7eVEx2vGRh3msnv_pKqn7M",
@@ -10,4 +10,4 @@ let firebaseConfig = {
     appId: "1:559777479763:web:e02c8b4b9435f6d2b09aa6"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+export const fb = firebase.initializeApp(firebaseConfig);

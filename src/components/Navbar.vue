@@ -38,7 +38,7 @@
           <button
             class="btn btn-outline-primary my-2 my-sm-0 ml-2"
             data-toggle="modal"
-            data-target="#staticBackdrop"
+            data-target="#authModal"
           >Login/Signup</button>
         </div>
       </div>
