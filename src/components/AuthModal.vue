@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { fb } from "../firebase";
+import { fb } from "@/firebase";
 
 export default {
   name: "AuthModal",
@@ -152,7 +152,7 @@ export default {
           window.$("#authModal").modal("hide");
           this.$router.replace("admin");
         })
-        .catch(function(error) {
+        .catch(error => {
           let errorMessage = error.message;
           console.log(errorMessage);
         });

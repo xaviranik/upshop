@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import {
+  fb
+} from "@/firebase";
 
 Vue.use(VueRouter);
 
@@ -21,6 +24,9 @@ const routes = [{
   {
     path: "/admin",
     name: "Admin",
+    meta: {
+      requiresAuth: true
+    },
     component: () =>
       import( /* webpackChunkName: "admin" */ "../views/Admin.vue"),
     children: [{
@@ -50,5 +56,19 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.beforeEach((to, from, next) => {
+
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const currentUser = fb.auth().currentUser;
+
+  if (requiresAuth && !currentUser) {
+    next('/');
+  } else if (requiresAuth && currentUser) {
+    next();
+  } else {
+    next();
+  }
+})
 
 export default router;
