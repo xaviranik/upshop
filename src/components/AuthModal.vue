@@ -60,6 +60,7 @@
                       type="password"
                       class="form-control"
                       id="login-password"
+                      @keyup.enter="loginUser"
                       v-model="user.password"
                     />
                   </div>
@@ -138,7 +139,7 @@ export default {
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
           window.$("#authModal").modal("hide");
-          this.$router.replace("admin");
+          this.$router.replace("admin").catch(() => {});
         })
         .catch(error => {
           let errorMessage = error.message;
@@ -150,7 +151,7 @@ export default {
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
           window.$("#authModal").modal("hide");
-          this.$router.replace("admin");
+          this.$router.replace("admin").catch(() => {});
         })
         .catch(error => {
           let errorMessage = error.message;

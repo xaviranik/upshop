@@ -6,7 +6,17 @@
       <div class="my-4">
         <h1 class="lead">Hot Deals</h1>
         <hr />
-        <ProductCard />
+        <div class="row">
+          <div class="col-md-3">
+            <ProductCard />
+          </div>
+          <div class="col-md-3">
+            <ProductCard />
+          </div>
+          <div class="col-md-3">
+            <ProductCard />
+          </div>
+        </div>
       </div>
     </div>
     <Footer />

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card shadow-sm" style="width: 18rem;">
+    <div class="card shadow-sm mb-4">
       <img class="card-img-top" src="https://picsum.photos/200" />
       <div class="card-body">
         <h5 class="card-title">Product name</h5>
