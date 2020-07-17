@@ -49,7 +49,7 @@
                 role="tabpanel"
                 aria-labelledby="pills-login-tab"
               >
-                <form @submit.passive="loginUser">
+                <form @submit.prevent="loginUser">
                   <div class="form-group">
                     <label for="login-email">Email Address</label>
                     <input type="email" class="form-control" id="login-email" v-model="user.email" />
@@ -57,7 +57,7 @@
                   <div class="form-group">
                     <label for="login-password">Password</label>
                     <input
-                      type="login-password"
+                      type="password"
                       class="form-control"
                       id="login-password"
                       v-model="user.password"
@@ -148,7 +148,10 @@ export default {
     loginUser() {
       fb.auth()
         .signInWithEmailAndPassword(this.user.email, this.user.password)
-        .then(() => {})
+        .then(() => {
+          window.$("#authModal").modal("hide");
+          this.$router.replace("admin");
+        })
         .catch(function(error) {
           let errorMessage = error.message;
           console.log(errorMessage);
