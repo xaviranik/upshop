@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Overview</h1>
+    <h3>Overview</h3>
     <hr />
     <div class="row">
       <div class="col-md-6">

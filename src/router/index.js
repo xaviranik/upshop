@@ -24,6 +24,7 @@ const routes = [{
   {
     path: "/admin",
     name: "Admin",
+    redirect: '/admin/overview',
     meta: {
       requiresAuth: true
     },
