@@ -50,7 +50,7 @@
                 <hr />
                 <div class="form-group">
                   <label for="product-name">Product Name</label>
-                  <input type="text" class="form-control" id="product-name" />
+                  <input type="text" class="form-control" id="product-name" v-model="product.name" />
                 </div>
                 <div class="form-group">
                   <label for="product-description">Product Description</label>
@@ -59,6 +59,7 @@
                     name="product-description"
                     id="product-description"
                     rows="15"
+                    v-model="product.description"
                   ></textarea>
                 </div>
               </div>
@@ -67,11 +68,16 @@
                 <hr />
                 <div class="form-group">
                   <label for="product-price">Product Price</label>
-                  <input type="text" class="form-control" id="product-price" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="product-price"
+                    v-model="product.price"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="product-tags">Product Tags (Separate tags with Comma)</label>
-                  <input type="text" class="form-control" id="product-tags" />
+                  <input type="text" class="form-control" id="product-tags" v-model="product.tags" />
                 </div>
                 <div class="form-group">
                   <label for="product-images">Product Images</label>
@@ -82,7 +88,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save Product</button>
+            <button type="button" class="btn btn-primary" @click="createNewProduct">Save Product</button>
           </div>
         </div>
       </div>
@@ -91,19 +97,40 @@
 </template>
 
 <script>
+import { fs } from "@/firebase";
+
 export default {
   name: "Products",
+  firestore() {
+    return {
+      products: fs.collection("products")
+    };
+  },
   data() {
     return {
       product: {
         name: null,
-        price: null
-      }
+        description: null,
+        tags: null,
+        price: null,
+        image: null
+      },
+      products: []
     };
   },
   methods: {
     openProductModal() {
       window.$("#productModal").modal("show");
+    },
+    createNewProduct() {
+      this.$firestore.products
+        .add(this.product)
+        .then(() => {
+          window.$("#productModal").modal("hide");
+        })
+        .catch(error => {
+          alert("Something went wrong", error);
+        });
     }
   }
 };

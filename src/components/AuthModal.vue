@@ -139,7 +139,7 @@ export default {
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
           window.$("#authModal").modal("hide");
-          this.$router.replace("admin").catch(() => {});
+          this.$router.replace("/admin").catch(() => {});
         })
         .catch(error => {
           let errorMessage = error.message;
@@ -151,7 +151,7 @@ export default {
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
           window.$("#authModal").modal("hide");
-          this.$router.replace("admin").catch(() => {});
+          this.$router.replace("/admin").catch(() => {});
         })
         .catch(error => {
           let errorMessage = error.message;

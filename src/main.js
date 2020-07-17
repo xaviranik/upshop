@@ -1,10 +1,15 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import VueFirestore from 'vue-firestore'
+require('firebase/firestore')
 import store from "./store";
 import {
   fb
 } from "@/firebase";
+
+
+Vue.use(VueFirestore)
 
 import 'bootstrap';
 import 'popper.js';

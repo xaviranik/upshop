@@ -1,5 +1,7 @@
 import firebase from "firebase";
 
+require("firebase/firestore");
+
 let firebaseConfig = {
     apiKey: "AIzaSyDjz-riTbdKA7eVEx2vGRh3msnv_pKqn7M",
     authDomain: "ggupshop.firebaseapp.com",
@@ -11,3 +13,4 @@ let firebaseConfig = {
 };
 // Initialize Firebase
 export const fb = firebase.initializeApp(firebaseConfig);
+export const fs = fb.firestore();
