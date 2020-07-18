@@ -14,15 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Pen</td>
-          <td>$20</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>Mouse</td>
-          <td>$36</td>
-          <td>@mdo</td>
+        <tr v-for="product in products" :key="product.index">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary mr-2">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

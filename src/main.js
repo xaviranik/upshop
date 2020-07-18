@@ -1,23 +1,23 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import VueFirestore from 'vue-firestore'
-require('firebase/firestore')
+import VueFirestore from "vue-firestore";
+import "firebase/firestore";
 import store from "./store";
 import {
   fb
 } from "@/firebase";
 
+// App SCSS
+import "./assets/scss/app.scss";
 
+// App JS
+import "./assets/js/app";
+
+// Firestore
 Vue.use(VueFirestore)
 
-import 'bootstrap';
-import 'popper.js';
-import jQuery from 'jquery';
-window.$ = window.jQuery = jQuery;
-
-import './assets/scss/app.scss';
-
+// Configs
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = [/^ion-/]
 
