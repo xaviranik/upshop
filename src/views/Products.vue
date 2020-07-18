@@ -19,7 +19,7 @@
           <td>{{ product.price }}</td>
           <td>
             <button class="btn btn-sm btn-outline-primary mr-2">Edit</button>
-            <button class="btn btn-sm btn-outline-danger">Delete</button>
+            <button @click="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -128,6 +128,26 @@ export default {
         })
         .catch(error => {
           alert("Something went wrong", error);
+        });
+    },
+    deleteProduct(product) {
+      window
+        .Swal({
+          title: "Are you sure?",
+          text: "You will delete the product!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true
+        })
+        .then(ok => {
+          if (ok) {
+            this.$firestore.products.doc(product[".key"]).delete();
+            window.Swal("Product has been deleted", {
+              icon: "success"
+            });
+          } else {
+            window.Swal("Your imaginary file is safe!");
+          }
         });
     }
   }
