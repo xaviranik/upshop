@@ -42,6 +42,9 @@
             </button>
           </div>
           <div class="modal-body">
+            <div class="alert alert-danger" v-if="authErrors.length > 0">
+              <span v-for="error in authErrors" :key="authErrors.indexOf(error)">{{ error }}</span>
+            </div>
             <div class="tab-content" id="pills-tabContent">
               <div
                 class="tab-pane fade show active"
@@ -130,11 +133,16 @@ export default {
         name: "",
         email: "",
         password: ""
-      }
+      },
+      authErrors: []
     };
   },
   methods: {
     registerUser() {
+      if (!this.user.email || !this.user.password) {
+        this.authErrors.push("Please enter Email and Password");
+        return;
+      }
       fb.auth()
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
@@ -143,10 +151,16 @@ export default {
         })
         .catch(error => {
           let errorMessage = error.message;
-          console.log(errorMessage);
+          this.authErrors.push(errorMessage);
         });
     },
     loginUser() {
+      this.authErrors = [];
+      if (!this.user.email || !this.user.password) {
+        this.authErrors.push("Please enter Email and Password");
+        return;
+      }
+
       fb.auth()
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
@@ -155,7 +169,7 @@ export default {
         })
         .catch(error => {
           let errorMessage = error.message;
-          console.log(errorMessage);
+          this.authErrors.push(errorMessage);
         });
     }
   }

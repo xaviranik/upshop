@@ -35,7 +35,7 @@
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-product" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalCenterTitle">Create Product</h5>
@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modal-lg {
+.modal-product {
   max-width: 80% !important;
 }
 </style>
