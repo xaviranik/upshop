@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex justify-content-between">
       <h3>Products</h3>
-      <button @click="openProductModal" class="btn btn-outline-primary">Add Product</button>
+      <button @click="openCreateProductModal" class="btn btn-outline-primary">Add Product</button>
     </div>
     <hr />
     <table class="table table-bordered table-hover">
@@ -18,7 +18,7 @@
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
           <td>
-            <button class="btn btn-sm btn-outline-primary mr-2">Edit</button>
+            <button @click="editProduct(product)" class="btn btn-sm btn-outline-primary mr-2">Edit</button>
             <button @click="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button>
           </td>
         </tr>
@@ -36,7 +36,8 @@
       <div class="modal-dialog modal-dialog-centered modal-product" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Create Product</h5>
+            <h5 v-if="editMode" class="modal-title" id="exampleModalCenterTitle">Edit Product</h5>
+            <h5 v-else class="modal-title" id="exampleModalCenterTitle">Create Product</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -86,7 +87,18 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="createNewProduct">Save Product</button>
+            <button
+              v-if="editMode"
+              type="button"
+              class="btn btn-primary"
+              @click="updateProduct"
+            >Update Product</button>
+            <button
+              v-else
+              type="button"
+              class="btn btn-primary"
+              @click="createNewProduct"
+            >Create Product</button>
           </div>
         </div>
       </div>
@@ -113,11 +125,14 @@ export default {
         price: null,
         image: null
       },
-      products: []
+      products: [],
+      editMode: false
     };
   },
   methods: {
-    openProductModal() {
+    openCreateProductModal() {
+      this.resetProduct();
+      this.editMode = false;
       window.$("#productModal").modal("show");
     },
     createNewProduct() {
@@ -128,6 +143,19 @@ export default {
         })
         .catch(error => {
           alert("Something went wrong", error);
+        });
+    },
+    editProduct(product) {
+      this.editMode = true;
+      window.$("#productModal").modal("show");
+      this.product = product;
+    },
+    updateProduct() {
+      this.$firestore.products
+        .doc(this.product.id)
+        .update(this.product)
+        .then(() => {
+          window.$("#productModal").modal("hide");
         });
     },
     deleteProduct(product) {
@@ -141,14 +169,21 @@ export default {
         })
         .then(ok => {
           if (ok) {
-            this.$firestore.products.doc(product[".key"]).delete();
+            this.$firestore.products.doc(product.id).delete();
             window.Swal("Product has been deleted", {
               icon: "success"
             });
-          } else {
-            window.Swal("Your imaginary file is safe!");
           }
         });
+    },
+    resetProduct() {
+      this.product = {
+        name: null,
+        description: null,
+        tags: null,
+        price: null,
+        image: null
+      };
     }
   }
 };

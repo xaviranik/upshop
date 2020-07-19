@@ -15,7 +15,10 @@ import "./assets/scss/app.scss";
 import "./assets/js/app";
 
 // Firestore
-Vue.use(VueFirestore)
+Vue.use(VueFirestore, {
+  key: 'id', // the name of the property. Default is '.key'.
+  enumerable: true //  whether it is enumerable or not. Default is true.
+});
 
 // Configs
 Vue.config.productionTip = false;
