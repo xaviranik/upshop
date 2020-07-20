@@ -53,13 +53,7 @@
                 </div>
                 <div class="form-group">
                   <label for="product-description">Product Description</label>
-                  <textarea
-                    class="form-control"
-                    name="product-description"
-                    id="product-description"
-                    rows="15"
-                    v-model="product.description"
-                  ></textarea>
+                  <vue-editor v-model="product.description"></vue-editor>
                 </div>
               </div>
               <div class="col-md-4">
@@ -108,9 +102,13 @@
 
 <script>
 import { fs } from "@/firebase";
+import { VueEditor } from "vue2-editor";
 
 export default {
   name: "Products",
+  components: {
+    VueEditor
+  },
   firestore() {
     return {
       products: fs.collection("products")
