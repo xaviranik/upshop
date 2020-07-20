@@ -7,8 +7,8 @@
         <h1 class="lead">Hot Deals</h1>
         <hr />
         <div class="row">
-          <div class="col-md-3">
-            <ProductCard />
+          <div v-for="product in products" :key="product.id" class="col-md-3">
+            <ProductCard :product="product" />
           </div>
         </div>
       </div>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { fs } from "@/firebase";
+
 import Navbar from "@/components/Navbar.vue";
 import Showcase from "@/components/Showcase.vue";
 import Footer from "@/components/Footer.vue";
@@ -28,6 +30,16 @@ import AuthModal from "@/components/AuthModal.vue";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      products: []
+    };
+  },
+  firestore() {
+    return {
+      products: fs.collection("products")
+    };
+  },
   components: {
     Navbar,
     Showcase,
