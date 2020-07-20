@@ -10,12 +10,6 @@
           <div class="col-md-3">
             <ProductCard />
           </div>
-          <div class="col-md-3">
-            <ProductCard />
-          </div>
-          <div class="col-md-3">
-            <ProductCard />
-          </div>
         </div>
       </div>
     </div>

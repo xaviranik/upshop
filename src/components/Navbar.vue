@@ -36,10 +36,16 @@
             />
           </form>
           <button
+            v-if="! isLoggedIn"
             class="btn btn-outline-primary my-2 my-sm-0 ml-2"
             data-toggle="modal"
             data-target="#authModal"
           >Login/Signup</button>
+          <router-link
+            to="/admin/overview"
+            v-else
+            class="btn btn-outline-primary my-2 my-sm-0 ml-2"
+          >Dashboard</router-link>
         </div>
       </div>
     </nav>
@@ -47,7 +53,16 @@
 </template>
 
 <script>
+import { fb } from "@/firebase";
+
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  computed: {
+    isLoggedIn() {
+      const user = fb.auth().currentUser;
+
+      return user !== null;
+    }
+  }
 };
 </script>
