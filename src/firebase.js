@@ -3,13 +3,13 @@ import firebase from "firebase";
 require("firebase/firestore");
 
 let firebaseConfig = {
-    apiKey: "AIzaSyDjz-riTbdKA7eVEx2vGRh3msnv_pKqn7M",
-    authDomain: "ggupshop.firebaseapp.com",
-    databaseURL: "https://ggupshop.firebaseio.com",
-    projectId: "ggupshop",
-    storageBucket: "ggupshop.appspot.com",
-    messagingSenderId: "559777479763",
-    appId: "1:559777479763:web:e02c8b4b9435f6d2b09aa6"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
 };
 // Initialize Firebase
 export const fb = firebase.initializeApp(firebaseConfig);
